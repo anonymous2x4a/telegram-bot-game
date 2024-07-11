@@ -1,4 +1,3 @@
-ECHO is on.
 <?php
 require 'vendor/autoload.php';
 
@@ -25,4 +24,3 @@ $bot->on(function (Update $update) use ($bot) {
 });
 
 $bot->run();
-$bot->run(['polling' => true]);
