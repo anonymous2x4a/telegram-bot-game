@@ -2,12 +2,14 @@
 require 'vendor/autoload.php';
 
 use TelegramBot\Api\BotApi;
-use TelegramBot\Api\Types\Update;
 
 // Replace 'YOUR_BOT_TOKEN' with your actual bot token
 $bot = new BotApi('7388917863:AAFseb7fG51tjGpjbW5gF7JMaTy25TkL-m4');
 
-$bot->on(function (Update $update) use ($bot) {
+// Get updates
+$updates = $bot->getUpdates();
+
+foreach ($updates as $update) {
     $message = $update->getMessage();
     $chatId = $message->getChat()->getId();
     $text = $message->getText();
@@ -19,8 +21,4 @@ $bot->on(function (Update $update) use ($bot) {
     } else {
         $bot->sendMessage($chatId, "I don't understand that command.");
     }
-}, function () {
-    return true;
-});
-
-$bot->run();
+}
